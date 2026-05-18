@@ -1,311 +1,161 @@
-/* ═══════════════════════════════════════════════════════
-   UNDERWORLD — app.js
-   ═══════════════════════════════════════════════════════ */
+// URL local de tu JSON Server configurada con IP numérica directa para evitar caídas de resolución
+const BASE_URL = 'http://127.0.0.1:5000';
 
-const API_URL = "http://localhost:3000/artists";
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Vincular interacciones a las celdas fijas del Roster de arriba
+    initArtistsInteractivity();
+    // 2. Cargar lanzamientos asíncronos en el catálogo inferior
+    loadDynamicReleases();
+    // 3. Inyectar estructura modular del Modal en el documento
+    createDetailsModalStructure();
+});
 
-/* ─────────────────────────────────────────────────────
-   INTRO: canvas sand + 3D title + burst exit
-   ─────────────────────────────────────────────────────*/
-(function initIntro() {
-  const canvas = document.getElementById("sandCanvas");
-  const ctx    = canvas.getContext("2d");
-  const intro  = document.getElementById("introScreen");
-  const main   = document.getElementById("mainSite");
-
-  let particles = [];
-  let animId;
-  let W, H;
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener("resize", resize);
-
-  class SandParticle {
-    constructor(x, y, burst) {
-      this.x     = x !== undefined ? x : Math.random() * W;
-      this.y     = y !== undefined ? y : Math.random() * H;
-      this.vx    = burst ? (Math.random() - 0.5) * 7 : (Math.random() - 0.5) * 0.3;
-      this.vy    = burst ? (Math.random() - 0.5) * 7 - 1.5 : Math.random() * 0.4 + 0.1;
-      this.size  = burst ? Math.random() * 3 + 1 : Math.random() * 1.4 + 0.3;
-      this.alpha = burst ? Math.random() * 0.9 + 0.1 : Math.random() * 0.25 + 0.05;
-      this.decay = burst ? Math.random() * 0.02 + 0.01 : 0.0008;
-      this.hue   = 35 + Math.random() * 18;
-      this.light = 55 + Math.random() * 22;
+/**
+ * Trae los artistas desde db.json y asocia dinámicamente la escucha del click
+ */
+async function initArtistsInteractivity() {
+    try {
+        const res = await fetch(`${BASE_URL}/artists`);
+        if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+        
+        const artists = await res.json();
+        const frames = document.querySelectorAll('.video-artist-frame');
+        
+        frames.forEach(frame => {
+            const id = frame.getAttribute('data-artist-id');
+            const matchData = artists.find(a => String(a.id) === String(id));
+            
+            if (matchData) {
+                frame.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openArtistProfile(matchData);
+                });
+            }
+        });
+    } catch (err) {
+        console.error("Error cargando base de artistas:", err);
     }
-
-    update() {
-      this.x     += this.vx;
-      this.y     += this.vy;
-      this.alpha -= this.decay;
-      this.vy    += 0.035;
-      this.vx    *= 0.992;
-    }
-
-    draw() {
-      ctx.save();
-      ctx.globalAlpha = Math.max(0, this.alpha);
-      ctx.fillStyle   = `hsl(${this.hue}, 12%, ${this.light}%)`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  /* seed ambient dust */
-  for (let i = 0; i < 100; i++) particles.push(new SandParticle());
-
-  function loop() {
-    ctx.clearRect(0, 0, W, H);
-    particles = particles.filter(p => p.alpha > 0);
-    particles.forEach(p => { p.update(); p.draw(); });
-    if (particles.length < 70) {
-      for (let i = 0; i < 2; i++) particles.push(new SandParticle());
-    }
-    animId = requestAnimationFrame(loop);
-  }
-  loop();
-
-  function burst() {
-    const cx = W / 2, cy = H / 2;
-    for (let i = 0; i < 350; i++) {
-      particles.push(new SandParticle(
-        cx + (Math.random() - 0.5) * 400,
-        cy + (Math.random() - 0.5) * 100,
-        true
-      ));
-    }
-  }
-
-  /* Wait for title animation to settle, then burst and exit */
-  setTimeout(() => {
-    burst();
-    setTimeout(() => {
-      intro.classList.add("fadeOut");
-      intro.addEventListener("animationend", () => {
-        cancelAnimationFrame(animId);
-        intro.style.display = "none";
-        main.classList.remove("hidden");
-        initApp();
-      }, { once: true });
-    }, 500);
-  }, 2600);
-})();
-
-/* ─────────────────────────────────────────────────────
-   APP INIT
-   ─────────────────────────────────────────────────────*/
-let allArtists = [];
-
-async function initApp() {
-  setupNav();
-  await fetchArtists();
-  setupModal();
 }
 
-/* ── FETCH ────────────────────────────────────────── */
-async function fetchArtists() {
-  try {
-    const res = await fetch(API_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    allArtists = await res.json();
-    renderGrid(allArtists);
-  } catch (err) {
-    console.error("Fetch error:", err);
-    renderError();
-  }
+/**
+ * Trae y dibuja la sección de discografía asíncronamente
+ */
+async function loadDynamicReleases() {
+    const container = document.getElementById('cardsContainer');
+    const loading = document.getElementById('loadingState');
+    
+    try {
+        const res = await fetch(`${BASE_URL}/releases`);
+        if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+        
+        const releasesList = await res.json();
+        
+        // Limpiamos los spinners de carga inicial
+        if (loading) loading.remove();
+        if (container) {
+            container.innerHTML = '';
+            container.classList.remove('d-none');
+        }
+        
+        releasesList.forEach(album => {
+            const col = document.createElement('div');
+            col.className = 'col';
+            
+            col.innerHTML = `
+                <div class="underworld-release-card h-100">
+                    <div class="release-img-wrapper">
+                        <img src="${album.coverUrl}" alt="${album.title}" class="img-fluid">
+                    </div>
+                    <div class="release-info-box p-3">
+                        <span class="release-artist-badge">${album.artist.toUpperCase()}</span>
+                        <h4 class="release-album-title mt-1 mb-2">${album.title.toUpperCase()}</h4>
+                        <div class="d-flex justify-content-between align-items-center text-muted small mt-2 pt-2" style="border-top: 1px solid rgba(255,255,255,0.05);">
+                            <span>${album.year}</span>
+                            <span>✦ ${album.tracks}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(col);
+        });
+        
+    } catch (err) {
+        console.error("Error inyectando lanzamientos:", err);
+        if (loading) {
+            loading.innerHTML = `
+                <div class="text-danger small py-3">
+                    <p class="fw-bold mb-1">⚠️ Error de conexión con JSON Server</p>
+                    <p class="text-muted mb-0">Ejecuta en terminal: <code class="text-warning">npx json-server --watch db.json --port 5000 --cors</code></p>
+                </div>
+            `;
+        }
+    }
 }
 
-/* ── RENDER GRID ──────────────────────────────────── */
-function renderGrid(artistList) {
-  const grid = document.getElementById("artistGrid");
-  const loadingMsg = document.getElementById("loadingMsg");
-  if (loadingMsg) loadingMsg.remove();
+function createDetailsModalStructure() {
+    if (document.getElementById('artistModal')) return;
 
-  grid.innerHTML = "";
-
-  /* Split into rows of 5 (matching screenshot) */
-  const rowSize = 5;
-  for (let i = 0; i < artistList.length; i += rowSize) {
-    const rowArtists = artistList.slice(i, i + rowSize);
-    const row = document.createElement("div");
-    row.className = "gridRow";
-
-    rowArtists.forEach((artist, idx) => {
-      const frame = document.createElement("div");
-      frame.className = "artistFrame";
-      frame.setAttribute("data-id", artist.id);
-      frame.style.animationDelay = `${(i + idx) * 55}ms`;
-
-      frame.innerHTML = `
-        <img
-          src="${escapeHtml(artist.image)}"
-          alt="${escapeHtml(artist.name)}"
-          loading="lazy"
-          onerror="this.src='https://via.placeholder.com/300x400/111/333?text=%E2%9C%A6'"
-        />
-        <div class="frameGradient"></div>
-        <div class="frameStar">✦</div>
-        <div class="frameName">${escapeHtml(artist.displayName)}</div>
-      `;
-
-      row.appendChild(frame);
-    });
-
-    grid.appendChild(row);
-  }
-}
-
-function renderError() {
-  const grid = document.getElementById("artistGrid");
-  grid.innerHTML = `<div class="loadingMsg">
-    ✦ ERROR — Inicia JSON Server:<br>
-    <small style="font-size:.6rem;color:#444;margin-top:8px;display:block">npx json-server db.json</small>
-  </div>`;
-}
-
-/* ─────────────────────────────────────────────────────
-   MODAL
-   ─────────────────────────────────────────────────────*/
-function setupModal() {
-  const modal   = document.getElementById("artistModal");
-  const overlay = document.getElementById("modalOverlay");
-  const closeBtn = document.getElementById("modalClose");
-  const grid    = document.getElementById("artistGrid");
-
-  /* Open on artist click */
-  grid.addEventListener("click", (e) => {
-    const frame = e.target.closest(".artistFrame");
-    if (!frame) return;
-    const artistId = parseInt(frame.getAttribute("data-id"), 10);
-    const artist   = allArtists.find(a => a.id === artistId);
-    if (artist) openModal(artist);
-  });
-
-  /* Close */
-  overlay.addEventListener("click", closeModal);
-  closeBtn.addEventListener("click", closeModal);
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
-
-  function openModal(artist) {
-    document.getElementById("modalImg").src    = artist.image;
-    document.getElementById("modalImg").alt    = artist.name;
-    document.getElementById("modalGenre").textContent  = artist.genre.toUpperCase();
-    document.getElementById("modalName").textContent   = artist.displayName;
-    document.getElementById("modalOrigin").textContent = `📍 ${artist.origin}`;
-    document.getElementById("modalDesc").textContent   = artist.description;
-    renderConcerts(artist);
-    modal.classList.add("open");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeModal() {
-    modal.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-}
-
-/* ── CONCERTS (invented per artist) ─────────────── */
-const concertData = {
-  1: [ /* Soto Asa */
-    { date: "14 JUN 2025", venue: "Sala But",        city: "MADRID" },
-    { date: "21 JUN 2025", venue: "Razzmatazz",      city: "BARCELONA" },
-    { date: "05 JUL 2025", venue: "Sala Maravillas",  city: "MADRID" },
-  ],
-  2: [ /* Judeline */
-    { date: "20 JUN 2025", venue: "Teatro Lope de Vega", city: "SEVILLA" },
-    { date: "28 JUN 2025", venue: "Auditorio Mar de Vigo", city: "VIGO" },
-    { date: "12 JUL 2025", venue: "Sala Apolo",       city: "BARCELONA" },
-  ],
-  3: [ /* Guxo */
-    { date: "07 JUN 2025", venue: "Sala Mon",         city: "MADRID" },
-    { date: "14 JUN 2025", venue: "Sala Upload",      city: "BARCELONA" },
-    { date: "22 JUN 2025", venue: "Sala X",           city: "VALENCIA" },
-  ],
-  4: [ /* Pedro LaDroga */
-    { date: "11 JUN 2025", venue: "Barby",            city: "BUENOS AIRES" },
-    { date: "19 JUN 2025", venue: "La Sala",          city: "MADRID" },
-    { date: "03 JUL 2025", venue: "Sala Heineken",    city: "GRANADA" },
-  ],
-  5: [ /* Disobey */
-    { date: "18 JUN 2025", venue: "Sala 16 Toneladas", city: "VALENCIA" },
-    { date: "25 JUN 2025", venue: "Sala Caracol",     city: "MADRID" },
-    { date: "09 JUL 2025", venue: "Primavera Sound",  city: "BARCELONA" },
-  ],
-  6: [ /* Sticky M.A. */
-    { date: "06 JUN 2025", venue: "Sala El Sol",      city: "MADRID" },
-    { date: "13 JUN 2025", venue: "Bikini",           city: "BARCELONA" },
-    { date: "27 JUN 2025", venue: "Café Berlín",      city: "MADRID" },
-  ],
-  7: [ /* Metrika */
-    { date: "08 JUN 2025", venue: "Sala Zentral",     city: "MADRID" },
-    { date: "15 JUN 2025", venue: "Sala Bóveda",      city: "BARCELONA" },
-    { date: "29 JUN 2025", venue: "Sala Rock&Beer",   city: "BILBAO" },
-  ],
-  8: [ /* MC Buzz */
-    { date: "10 JUN 2025", venue: "La Riviera",       city: "MADRID" },
-    { date: "17 JUN 2025", venue: "Sala Luz de Gas",  city: "BARCELONA" },
-    { date: "01 JUL 2025", venue: "Sala Albéniz",     city: "SEVILLA" },
-  ],
-  9: [ /* Rusowsky */
-    { date: "05 JUN 2025", venue: "Teatro Circo Price", city: "MADRID" },
-    { date: "12 JUN 2025", venue: "Sala Barts",       city: "BARCELONA" },
-    { date: "26 JUN 2025", venue: "Sala 16 Toneladas", city: "VALENCIA" },
-  ],
-  10: [ /* L0rna */
-    { date: "09 JUN 2025", venue: "Sala But",         city: "MADRID" },
-    { date: "16 JUN 2025", venue: "Sala Upload",      city: "BARCELONA" },
-    { date: "30 JUN 2025", venue: "La Riviera",       city: "MADRID" },
-  ],
-};
-
-function renderConcerts(artist) {
-  const list    = document.getElementById("modalConcerts");
-  const concerts = concertData[artist.id] || [];
-  list.innerHTML = "";
-
-  if (!concerts.length) {
-    list.innerHTML = `<li><span class="concertVenue" style="color:var(--dim)">Sin fechas confirmadas</span></li>`;
-    return;
-  }
-
-  concerts.forEach(c => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <span class="concertDate">${escapeHtml(c.date)}</span>
-      <span class="concertVenue">${escapeHtml(c.venue)}</span>
-      <span class="concertCity">${escapeHtml(c.city)}</span>
+    const modalElement = document.createElement('div');
+    modalElement.className = 'modal fade';
+    modalElement.id = 'artistModal';
+    modalElement.setAttribute('tabindex', '-1');
+    modalElement.setAttribute('aria-hidden', 'true');
+    
+    modalElement.innerHTML = `
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content underworld-modal-content">
+                <div class="modal-header underworld-modal-header">
+                    <h5 class="modal-title modal-artist-title-pop" id="modalArtistName"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <div class="modal-img-frame" style="height: 100%; min-height: 250px; background: #000;">
+                                <img id="modalArtistImg" src="" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-7 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <span class="modal-label-tech">Estilo / Género</span>
+                                        <p id="modalArtistGenre" class="modal-value-tech mt-1 text-uppercase"></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="modal-label-tech">Procedencia</span>
+                                        <p id="modalArtistOrigin" class="modal-value-tech mt-1"></p>
+                                    </div>
+                                </div>
+                                <hr style="border-color: rgba(255, 255, 255, 0.1);">
+                                <span class="modal-label-tech d-block mb-2">Biografía Oficial</span>
+                                <p id="modalArtistBio" class="modal-bio-text"></p>
+                            </div>
+                            <div class="pt-3 text-end">
+                                <span class="modal-label-tech me-2">STATUS ACUERDO:</span>
+                                <span id="modalArtistFee" class="badge bg-white text-dark fw-bold rounded-0 px-3 py-2" style="font-family: 'Syne', sans-serif; font-size: 0.7rem; letter-spacing: 0.5px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     `;
-    list.appendChild(li);
-  });
+    document.body.appendChild(modalElement);
 }
 
-/* ─────────────────────────────────────────────────────
-   NAV
-   ─────────────────────────────────────────────────────*/
-function setupNav() {
-  const toggler = document.getElementById("navToggler");
-  const links   = document.getElementById("navLinks");
-  if (toggler && links) {
-    toggler.addEventListener("click", () => links.classList.toggle("open"));
-  }
-}
-
-/* ─────────────────────────────────────────────────────
-   UTILS
-   ─────────────────────────────────────────────────────*/
-function escapeHtml(str) {
-  if (typeof str !== "string") return String(str);
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+function openArtistProfile(artist) {
+    document.getElementById('modalArtistName').textContent = artist.name.toUpperCase();
+    document.getElementById('modalArtistGenre').textContent = artist.genre;
+    document.getElementById('modalArtistOrigin').textContent = artist.origin;
+    document.getElementById('modalArtistBio').textContent = artist.bio;
+    document.getElementById('modalArtistFee').textContent = `BOOKED ${artist.fee}`;
+    
+    const img = document.getElementById('modalArtistImg');
+    img.src = artist.imageUrl;
+    img.alt = artist.name;
+    
+    const element = document.getElementById('artistModal');
+    const modalInstance = bootstrap.Modal.getInstance(element) || new bootstrap.Modal(element);
+    modalInstance.show();
 }

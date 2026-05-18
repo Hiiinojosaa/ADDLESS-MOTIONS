@@ -1,43 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underworld Disc - Home</title>
+    <title>Addless Motions - Agency Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="intro-preloader d-flex flex-column justify-content-center align-items-center">
         <div class="preloader-content text-center">
-            <span class="preloader-star">✦</span>
-            <h1 class="preloader-logo">UNDERWORLD</h1>
+            <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/c_auto,w_4000/LGO_PEQUE%C3%91O_1_t3kkpq.png" alt="Addless Motions Logo" class="preloader-agency-logo">
         </div>
     </div>
 
-    <header class="navbar-underworld d-flex justify-content-between align-items-center px-4 py-3">
+    <header class="navbar-underworld d-flex justify-content-between align-items-center px-4 py-2">
         <div class="logo-wrapper d-flex align-items-center">
-            <span class="star-logo">✦</span>
-            <span class="logo-text">UNDERWORLD</span>
+            <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/c_auto,w_4000/LGO_PEQUE%C3%91O_1_t3kkpq.png" alt="Addless Motions" class="navbar-brand-logo-transparent">
         </div>
         <nav class="nav-links">
             <a href="#releases">Lanzamientos</a>
-            <a href="#music">Musicales</a>
             <a href="#about">Acerca de</a>
             <a href="#contact">Contacto</a>
         </nav>
     </header>
 
-    <main class="main-hero-container d-flex flex-column justify-content-center align-items-center">
+    <main class="main-hero-container d-flex flex-column align-items-center">
         
+        <div class="roster-header-title text-center">
+            <h2>ROSTER <span class="by-text">by</span> ADDLESS MOTIONS</h2>
+        </div>
+
         <div class="artists-double-grid d-flex flex-column justify-content-center align-items-center">
             
             <div class="video-grid-showcase d-flex w-100 justify-content-center align-items-center mb-4">
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="1" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/PKLZ4O2Y45HHTG3ZCSYKO4YROQ_wiooqb.avif" alt="Soto Asa">
                         <div class="center-star">✦</div>
@@ -45,7 +47,7 @@
                     <div class="artist-hud-name">SOTO ASA</div>
                 </div>
 
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="2" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/judeline-inri-portada_advpw8.jpg" alt="Judeline">
                         <div class="center-star">✦</div>
@@ -53,7 +55,7 @@
                     <div class="artist-hud-name">JUDELINE</div>
                 </div>
 
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="3" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/guxo-artist-xceed-cover-49b1_wxkee8.jpg" alt="Guxo">
                         <div class="center-star">✦</div>
@@ -61,7 +63,7 @@
                     <div class="artist-hud-name">GUXO</div>
                 </div>
 
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="4" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/helsinkipro-pedro-ladroga-square_wjihdu.avif" alt="Pedro LaDroga">
                         <div class="center-star">✦</div>
@@ -69,7 +71,7 @@
                     <div class="artist-hud-name">P. LADROGA</div>
                 </div>
 
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="5" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/photo_5983084864796214559_m_kbe2pi.jpg" alt="Disobey">
                         <div class="center-star">✦</div>
@@ -79,7 +81,7 @@
             </div>
 
             <div class="video-grid-showcase d-flex w-100 justify-content-center align-items-center">
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="6" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/image-f260d75c8dd3a4783750b8c266282e7eaec5c4e9-1830x1907-jpg-1875_t0h3wk.webp" alt="Sticky M.A.">
                         <div class="center-star">✦</div>
@@ -87,7 +89,7 @@
                     <div class="artist-hud-name">STICKY M.A.</div>
                 </div>
 
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="7" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/IMG_0486-683x1024_bqarme.png" alt="Metrika">
                         <div class="center-star">✦</div>
@@ -95,7 +97,7 @@
                     <div class="artist-hud-name">METRIKA</div>
                 </div>
 
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="8" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/039e61ae3d57583f67799b81aa734f46.538x538x1_cufrpl.png" alt="MC Buzz">
                         <div class="center-star">✦</div>
@@ -103,7 +105,7 @@
                     <div class="artist-hud-name">MC BUZZ</div>
                 </div>
 
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="9" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/ab676161000051741ccc31898f2f43623815bac8_w08toi.jpg" alt="Rusowsky">
                         <div class="center-star">✦</div>
@@ -111,7 +113,7 @@
                     <div class="artist-hud-name">RUSOWSKY</div>
                 </div>
 
-                <div class="video-artist-frame">
+                <div class="video-artist-frame" data-artist-id="10" style="cursor: pointer;">
                     <div class="blur-image-wrapper">
                         <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/l0rnapic_X_cncbp9.jpg" alt="L0rna">
                         <div class="center-star">✦</div>
@@ -126,19 +128,106 @@
 
     <section id="releases" class="catalog-section py-5">
         <div class="container py-5">
-            <h2 class="section-title text-center mb-5">[ ALL RELEASES ]</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="cardsContainer">
-                <div class="col-12 w-100 text-center py-5" id="loadingState">
-                    <div class="spinner-border text-light" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p class="text-muted mt-3">Cargando base de datos dinámicamente...</p>
+            <h2 class="section-title text-center mb-5">[ DISCOGRAFÍA ]</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4" id="cardsContainer">
+                <div class="col-12 w-100 text-center py-4" id="loadingState">
+                    <div class="spinner-border text-light spinner-border-sm" role="status"></div>
+                    <p class="text-muted small mt-2">Sincronizando lanzamientos oficiales...</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="app.js"></script>
+    <section id="about" class="about-section py-5">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-md-6">
+                    <span class="about-tag">[ CORPORATE PROFILE ]</span>
+                    <h2 class="about-title mt-2 mb-4">ADDLESS MOTIONS</h2>
+                    <p class="about-text">
+                        ADDLESS MOTIONS opera como una agencia de management, representación artística e identidad musical de corte vanguardista. Gestionamos e impulsamos la carrera de perfiles únicos dentro del panorama sonoro independiente y urbano.
+                    </p>
+                    <p class="about-text text-secondary">
+                        Nuestra filosofía se basa en potenciar el movimiento constante y la pureza creativa, conectando la música con desarrollos estéticos avanzados y estrategias digitales de impacto profesional.
+                    </p>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="credits-box p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="credits-star me-2">✦</span>
+                            <span class="credits-label">AGENCY FOUNDER & LEAD PRODUCTION</span>
+                        </div>
+                        <h3 class="designer-signature mb-3">POWERED BY <span class="highlight">HIIINOJOSAA</span></h3>
+                        <p class="credits-text mb-0">
+                            Ecosistema digital corporativo enlazado mediante procesos asíncronos distribuidos en bases de datos integradas, controlando la identidad de marca oficial de la agencia.
+                        </p>
+                        <div class="mt-4 pt-3 d-flex justify-content-between align-items-center border-top border-secondary-subtle text-muted small">
+                            <span>ADDLESS MOTIONS OFFICIAL</span>
+                            <span>© 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <span class="about-tag">[ CONTACT CHANNELS ]</span>
+                <h2 class="section-title mt-2">CONNECT WITH US</h2>
+            </div>
+            
+            <div class="custom-contact-card mx-auto">
+                <div class="row g-0 align-items-center">
+                    <div class="col-sm-5 text-center p-5 left-branding-pane d-flex align-items-center justify-content-center">
+                        <img src="https://res.cloudinary.com/ddj5f29yf/image/upload/c_auto,w_4000/LGO_PEQUE%C3%91O_1_t3kkpq.png" alt="Addless Motions Corporate Branding" class="img-fluid contact-pane-logo-large">
+                    </div>
+                    <div class="col-sm-7 p-5 right-details-pane">
+                        <h3 class="contact-pane-title mb-4">ADDLESS MOTIONS</h3>
+                        
+                        <div class="contact-item-row d-flex align-items-center mb-4">
+                            <i class="bi bi-telephone-fill me-3"></i>
+                            <div>
+                                <span class="d-block item-label">Móvil / WhatsApp</span>
+                                <span class="item-value">+34 600 000 000</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item-row d-flex align-items-center mb-4">
+                            <i class="bi bi-envelope-open-fill me-3"></i>
+                            <div>
+                                <span class="d-block item-label">Correo Electrónico</span>
+                                <span class="item-value">info@addlessmotions.com</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item-row d-flex align-items-center mb-4">
+                            <i class="bi bi-geo-alt-fill me-3"></i>
+                            <div>
+                                <span class="d-block item-label">Ubicación</span>
+                                <span class="item-value">Sevilla / Madrid, España</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mt-4 pt-2 social-icon-row">
+                            <a href="#" class="text-white text-decoration-none fs-5"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="text-white text-decoration-none fs-5"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="text-white text-decoration-none fs-5"><i class="bi bi-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="agency-clean-footer text-center py-4">
+        <div class="container">
+            <p class="footer-brand-text mb-1">ADDLESS MOTIONS MANAGEMENT</p>
+            <p class="footer-sub-text text-muted mb-0">© 2026 Addless Motions. All rights reserved. Designed by HIIINOJOSAA.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
