@@ -1,0 +1,223 @@
+/* VARIABLES & CONFIGURACIÓN GENERAL */
+:root {
+  --bg-sand-grey: #848484; /* Gris del lienzo original */
+  --bg-dark-matte: #0c0c0e;
+  --text-white: #ffffff;
+  --text-grey-light: #cccccc;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --gradient-card-dark: linear-gradient(180deg, rgba(12,12,14,0) 40%, rgba(12,12,14,0.95) 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark-matte);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   ANIMACIÓN INTRO PRELOADER (Transición impecable con color gris)
+   ========================================================================== */
+.intro-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-sand-grey);
+  z-index: 9999;
+  animation: fadeOutSandEffect 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeOutSandEffect {
+  0% { opacity: 1; filter: blur(0px) contrast(100%); visibility: visible; }
+  99% { opacity: 0; filter: blur(25px) contrast(60%); visibility: visible; }
+  100% { opacity: 0; filter: blur(25px) contrast(60%); visibility: hidden; pointer-events: none; }
+}
+
+.preloader-star {
+  font-size: 3.5rem;
+  color: #111111;
+  display: block;
+  animation: pulseStar 1.8s infinite ease-in-out;
+}
+
+.preloader-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.5rem;
+  font-size: 2.2rem;
+  color: #111111;
+  margin-top: 15px;
+}
+
+@keyframes pulseStar {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(0,0,0,0.2)); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(0,0,0,0.5)); }
+}
+
+/* ==========================================================================
+   NAVBAR STYLES (Corregido a Blanco de alta visibilidad)
+   ========================================================================== */
+.navbar-underworld {
+  background-color: transparent;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.logo-wrapper {
+  gap: 12px;
+}
+
+.star-logo {
+  font-size: 1.5rem;
+  color: var(--text-white); /* Estrella blanca brillante */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.25rem;
+  font-size: 1.3rem;
+  color: var(--text-white); /* Texto de marca en blanco */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.nav-links a {
+  color: var(--text-grey-light);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  margin-left: 25px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-white);
+}
+
+/* ==========================================================================
+   MAIN HERO CONTENEDOR (Fondo de tu imagen cargado estático y centrado)
+   ========================================================================== */
+.main-hero-container {
+  width: 100%;
+  height: 100vh;
+  background-image: url('Diseño sin título (1).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-top: 110px; /* Margen optimizado */
+}
+
+.artists-double-grid {
+  width: 92%;
+  max-width: 1200px;
+}
+
+.video-grid-showcase {
+  display: flex;
+  gap: 14px;
+}
+
+/* Cuadros individuales de artistas */
+.video-artist-frame {
+  flex: 1;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blur-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Ajuste perfecto para las dos filas */
+  background: #000;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blur-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) blur(1px) contrast(125%);
+  transition: all 0.5s ease;
+}
+
+/* Sombreado interno de las imágenes */
+.blur-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-card-dark);
+  z-index: 1;
+}
+
+/* Estrella blanca de 8 puntas centrada */
+.center-star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-white);
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: 10;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+}
+
+.artist-hud-name {
+  font-size: 0.7rem;
+  letter-spacing: 0.15rem;
+  color: var(--text-white); /* Nombres cambiados a BLANCO para legibilidad total */
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: center;
+  font-family: var(--font-display);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Sombra negra para destacar sobre el fondo */
+}
+
+/* Hover interactivo de expansión */
+.video-artist-frame:hover {
+  flex: 1.3;
+}
+
+.video-artist-frame:hover img {
+  filter: grayscale(100%) blur(0px) contrast(115%);
+}
+
+/* ==========================================================================
+   SECCIÓN CATALOGO GENERAL
+   ========================================================================== */
+.catalog-section {
+  background-color: var(--bg-dark-matte);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+}

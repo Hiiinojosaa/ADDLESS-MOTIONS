@@ -1,0 +1,124 @@
+{
+  "artists": [
+    {
+      "id": 1,
+      "name": "Soto Asa",
+      "displayName": "SOTO ASA",
+      "genre": "Trap / R&B",
+      "origin": "España",
+      "latestRelease": "Niña Mala",
+      "year": 2023,
+      "description": "Voz oscura y melancólica que fusiona el trap con el R&B más crudo del underground español.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/ab6761610000e5eba294e038d7d691746aff7e68_qhfewh.jpg",
+      "category": "Trap"
+    },
+    {
+      "id": 2,
+      "name": "Judeline",
+      "displayName": "JUDELINE",
+      "genre": "Flamenco Urbano",
+      "origin": "Sevilla, España",
+      "latestRelease": "INRI",
+      "year": 2023,
+      "description": "Fusión única de flamenco y electrónica. Una voz que rompe géneros desde las raíces andaluzas.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/judeline-inri-portada_advpw8.jpg",
+      "category": "Flamenco Urbano"
+    },
+    {
+      "id": 3,
+      "name": "Guxo",
+      "displayName": "GUXO",
+      "genre": "Trap / Hip-Hop",
+      "origin": "España",
+      "latestRelease": "Artist",
+      "year": 2024,
+      "description": "Uno de los nombres más sólidos del trap nacional. Flows directos, beats pesados.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/guxo-artist-xceed-cover-49b1_wxkee8.jpg",
+      "category": "Trap"
+    },
+    {
+      "id": 4,
+      "name": "Pedro LaDroga",
+      "displayName": "P. LADROGA",
+      "genre": "Hip-Hop / Rap",
+      "origin": "Helsinki / España",
+      "latestRelease": "Pedro LaDroga",
+      "year": 2023,
+      "description": "Letras sin filtro, realismo brutal. El rap más honesto del underground hispano.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/helsinkipro-pedro-ladroga-square_wjihdu.avif",
+      "category": "Hip-Hop"
+    },
+    {
+      "id": 5,
+      "name": "Disobey",
+      "displayName": "DISOBEY",
+      "genre": "Urban / Dark Pop",
+      "origin": "España",
+      "latestRelease": "Rebel Signal",
+      "year": 2024,
+      "description": "Sonido oscuro y actitud rebelde. Disobey lleva la disidencia al mainstream underground.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/photo_5983084864796214559_m_kbe2pi.jpg",
+      "category": "Dark Pop"
+    },
+    {
+      "id": 6,
+      "name": "Sticky M.A.",
+      "displayName": "STICKY M.A.",
+      "genre": "Rap / Trap",
+      "origin": "España",
+      "latestRelease": "Sticky",
+      "year": 2023,
+      "description": "Técnica afilada y estilo propio. Sticky M.A. es referencia del rap consciencia en España.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/image-f260d75c8dd3a4783750b8c266282e7eaec5c4e9-1830x1907-jpg-1875_t0h3wk.webp",
+      "category": "Rap"
+    },
+    {
+      "id": 7,
+      "name": "Metrika",
+      "displayName": "METRIKA",
+      "genre": "Hip-Hop / Rap",
+      "origin": "España",
+      "latestRelease": "Metrika Vol. 1",
+      "year": 2024,
+      "description": "Precisión lírica y cadencia perfecta. Metrika construye cada barra como una obra de arte.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/IMG_0486-683x1024_bqarme.png",
+      "category": "Hip-Hop"
+    },
+    {
+      "id": 8,
+      "name": "MC Buzz",
+      "displayName": "MC BUZZ",
+      "genre": "Rap / Old School",
+      "origin": "España",
+      "latestRelease": "Buzz Season",
+      "year": 2023,
+      "description": "Raíces en el old school, mirada al futuro. MC Buzz lleva décadas en la escena.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/039e61ae3d57583f67799b81aa734f46.538x538x1_cufrpl.png",
+      "category": "Rap"
+    },
+    {
+      "id": 9,
+      "name": "Rusowsky",
+      "displayName": "RUSOWSKY",
+      "genre": "Indie / Pop Oscuro",
+      "origin": "España",
+      "latestRelease": "Rusowsky",
+      "year": 2024,
+      "description": "Pop cinematográfico con texturas oscuras. Rusowsky crea paisajes sonoros que atrapan.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/ab676161000051741ccc31898f2f43623815bac8_w08toi.jpg",
+      "category": "Indie"
+    },
+    {
+      "id": 10,
+      "name": "L0rna",
+      "displayName": "L0RNA",
+      "genre": "Trap / Dark R&B",
+      "origin": "España",
+      "latestRelease": "L0rna",
+      "year": 2024,
+      "description": "Presencia magnética y sonido sin concesiones. L0rna redefine el trap femenino en España.",
+      "image": "https://res.cloudinary.com/ddj5f29yf/image/upload/l0rnapic_X_cncbp9.jpg",
+      "category": "Dark R&B"
+    }
+  ]
+}
