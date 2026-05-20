@@ -1,4 +1,3 @@
-/* CONFIGURACIÓN Y PALETA CORPORATIVA ADDLESS MOTIONS */
 :root {
   --bg-dark-matte: #0a0a0c;
   --text-white: #ffffff;
@@ -26,9 +25,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ==========================================================================
-   ANIMACIÓN INTRO PRELOADER
-   ========================================================================== */
 .intro-preloader {
   position: fixed;
   top: 0;
@@ -66,9 +62,6 @@ body {
   100% { opacity: 0; filter: blur(15px); visibility: hidden; pointer-events: none; }
 }
 
-/* ==========================================================================
-   NAVBAR 
-   ========================================================================== */
 .navbar-underworld {
   width: 100%;
   min-height: 100px; 
@@ -106,9 +99,6 @@ body {
 
 .nav-links a:hover { color: var(--text-white); }
 
-/* ==========================================================================
-   CABECERA ROSTER TITULO
-   ========================================================================== */
 .roster-header-title {
   margin-bottom: 2.5rem;
   width: 100%;
@@ -133,9 +123,6 @@ body {
   margin: 0 6px;
 }
 
-/* ==========================================================================
-   MAIN ARTISTAS GRID
-   ========================================================================== */
 .main-hero-container {
   width: 100%;
   min-height: 100vh;
@@ -196,9 +183,6 @@ body {
 .video-artist-frame:hover img { filter: grayscale(100%) blur(0px) contrast(115%); }
 .video-artist-frame:hover .artist-hud-name { color: var(--text-white); }
 
-/* ==========================================================================
-   TARJETAS DE LANZAMIENTOS
-   ========================================================================== */
 .catalog-section {
   background-color: var(--bg-dark-matte);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -256,9 +240,7 @@ body {
   transform: scale(1.04);
 }
 
-/* ==========================================================================
-   SECCIÓN ACERCA DE
-   ========================================================================== */
+
 .about-section {
   background-color: #08080a;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -308,9 +290,6 @@ body {
 
 .credits-text { font-size: 0.85rem; line-height: 1.6; color: #a1a1aa; }
 
-/* ==========================================================================
-   SECCIÓN CONTACTO 
-   ========================================================================= */
 .contact-section {
   background-color: var(--bg-dark-matte);
   border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -367,9 +346,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* ==========================================================================
-   FOOTER CLEAN
-   ========================================================================== */
 .agency-clean-footer {
   background-color: #050506;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -388,9 +364,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* ==========================================================================
-   DISEÑO MODAL DETALLES DEL ARTISTA
-   ========================================================================== */
 .underworld-modal-content {
   background-color: #0c0c0e !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;

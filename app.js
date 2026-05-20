@@ -1,7 +1,5 @@
-// Target API endpoint configuration using explicit IP addressing
 const baseUrl = 'http://127.0.0.1:5000';
 
-// Secure local fallback architecture to bypass network blockages or missing server instances
 const localBackupData = {
   "artists": [
     { "id": "1", "name": "Soto Asa", "genre": "Reggaeton / Trap Zen", "origin": "Ceuta, Spain", "bio": "Pioneer of zen trap sound in Spain, blending mysticism with arcade aesthetics.", "fee": "12.000€", "imageUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/PKLZ4O2Y45HHTG3ZCSYKO4YROQ_wiooqb.avif" },
@@ -21,11 +19,9 @@ const localBackupData = {
     { "id": "r3", "title": "COUPÉ", "artist": "Soto Asa", "year": "2020", "tracks": "9 Tracks", "coverUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/c_auto,w_4000/maxresdefault_adqxtm.jpg", "spotifyUrl": "https://open.spotify.com/intl-es/album/1pZg55P2uYIq818bSguU83" },
     { "id": "r4", "title": "SADCORE DIGITAL", "artist": "Guxo", "year": "2024", "tracks": "7 Tracks", "coverUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/c_auto,w_4000/ab67616d0000b273c3a4f88a89a1964b8f10a2dc_zqetcy.jpg", "spotifyUrl": "https://open.spotify.com/intl-es/album/5VnB87S81gaBcX81A5zBvG" },
     { "id": "r5", "title": "LAS ENTRÁÑAS", "artist": "Sticky M.A.", "year": "2022", "tracks": "11 Tracks", "coverUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/c_auto,w_4000/51zDT6gDaIL._UXNaN_FMjpg_QL85__knj1bk.jpg", "spotifyUrl": "https://open.spotify.com/intl-es/album/7mS87a6S81gaBx71A8zbVg" },
-    // NUEVOS LANZAMIENTOS CON TUS PORTADAS REALES DE CLOUDINARY
     { "id": "r6", "title": "DAISY", "artist": "Rusowsky", "year": "2024", "tracks": "11 Tracks", "coverUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/v1779179142/DAISY-RUSOWSKY_FINALALBUMsRGBCOVER_ozowfc.webp", "spotifyUrl": "https://open.spotify.com/intl-es/album/1ZqS87A5SaBcX81A5zBvG" },
     { "id": "r7", "title": "MADRE", "artist": "Metrika", "year": "2023", "tracks": "9 Tracks", "coverUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/v1779179280/a1530761606_16_xcmjwz.jpg", "spotifyUrl": "https://open.spotify.com/intl-es/album/2kB87S81gaBcX81A5zBvG" },
     { "id": "r8", "title": "AMOR AMARGO", "artist": "L0rna", "year": "2025", "tracks": "6 Tracks", "coverUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/v1779179280/a0767748583_5_gbzmdm.jpg", "spotifyUrl": "https://open.spotify.com/intl-es/album/3VnB87S81gaBcX81A5zBvG" },
-    // COMPLETANDO LOS 10 EXIGIDOS POR RÚBRICA CON FOTOS DE TU PROPIO CLOUDINARY
     { "id": "r9", "title": "MISTICISMO DOCK", "artist": "Soto Asa", "year": "2021", "tracks": "8 Tracks", "coverUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/PKLZ4O2Y45HHTG3ZCSYKO4YROQ_wiooqb.avif", "spotifyUrl": "https://open.spotify.com/intl-es/album/4mB87S81gaBcX81A5zBvG" },
     { "id": "r10", "title": "INRI", "artist": "Judeline", "year": "2023", "tracks": "5 Tracks", "coverUrl": "https://res.cloudinary.com/ddj5f29yf/image/upload/judeline-inri-portada_advpw8.jpg", "spotifyUrl": "https://open.spotify.com/intl-es/album/5kB87S81gaBcX81A5zBvG" }
   ]
@@ -36,9 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     createDetailsModalStructure();
 });
 
-/**
- * Handles concurrent data fetching from database endpoints with safety local fallbacks
- */
 async function loadPlatformData() {
     const container = document.getElementById('cardsContainer');
     const loading = document.getElementById('loadingState');
@@ -110,9 +103,7 @@ async function loadPlatformData() {
     });
 }
 
-/**
- * Builds the structural HTML layout of the interactive profile Modal element inside the DOM
- */
+
 function createDetailsModalStructure() {
     if (document.getElementById('artistModal')) return;
 
@@ -165,9 +156,7 @@ function createDetailsModalStructure() {
     document.body.appendChild(modalElement);
 }
 
-/**
- * Maps properties and opens the native Bootstrap dynamic view modal component 
- */
+
 function openArtistProfile(artist) {
     document.getElementById('modalArtistName').textContent = artist.name.toUpperCase();
     document.getElementById('modalArtistGenre').textContent = artist.genre;
