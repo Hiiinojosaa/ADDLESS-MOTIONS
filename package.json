@@ -1,0 +1,22 @@
+{
+  "name": "addless-motions",
+  "version": "2.0.0",
+  "description": "Vanguard music agency corporate catalog and dynamic card gallery matching Bootstrap 5 styles.",
+  "main": "app.js",
+  "scripts": {
+    "server": "npx json-server --watch db.json --port 5000",
+    "server:cors": "npx json-server --watch db.json --port 5000 --cors"
+  },
+  "keywords": [
+    "agency",
+    "catalog",
+    "bootstrap5",
+    "async-fetch",
+    "cards-gallery"
+  ],
+  "author": "HIIINOJOSAA",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-alpha.23"
+  }
+}
