@@ -1,6 +1,5 @@
 const requestURL = './json/db.json';
 
-// Carga asíncrona estructurada según su modelo oficial
 async function fetchMoviesJson() {
     const response = await fetch(requestURL);
     const movies = await response.json();
@@ -13,7 +12,6 @@ fetchMoviesJson().then(movies => {
 
     moviesSection.innerHTML = '';
 
-    // Renderizado dinámico de las portadas limpias en rejilla de Bootstrap
     for (let index = 0; index < movies.documentaries.length; index++) {
         let item = movies.documentaries[index];
 
@@ -32,11 +30,9 @@ fetchMoviesJson().then(movies => {
         `;
     }
 
-    // Inyectamos las estructuras de las ventanas en el DOM
     createInteractiveRectangularModal();
     createDetailsModalStructure();
 
-    // INTERACTIVIDAD 1: Clic en las portadas de abajo (Abre panel rectangular + Spotify)
     const cards = document.querySelectorAll('.underworld-release-card');
     cards.forEach(card => {
         card.addEventListener('click', () => {
@@ -46,13 +42,9 @@ fetchMoviesJson().then(movies => {
         });
     });
 
-    // INTERACTIVIDAD 2: Clic en las fotos de arriba (Abre ficha de perfil)
     initRosterInteractivity(movies.documentaries);
 });
 
-/* ==========================================================================
-   MÓDULO DE DISCOGRAFÍA (CUADRO RECTANGULAR DE DETALLES + SPOTIFY)
-   ========================================================================== */
 function createInteractiveRectangularModal() {
     if (document.getElementById('albumInfoModal')) return;
 
@@ -141,9 +133,6 @@ function openRectangularInfo(data) {
     modalInstance.show();
 }
 
-/* ==========================================================================
-   MÓDULO DE AGENCIA (ROSTER DE FOTOS EN FILA SUPERIOR)
-   ========================================================================== */
 function initRosterInteractivity(artistsData) {
     const frames = document.querySelectorAll('.video-artist-frame');
     
