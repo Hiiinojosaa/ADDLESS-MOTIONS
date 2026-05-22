@@ -532,3 +532,129 @@ body {
   font-family: 'Syne', sans-serif;
   font-size: 0.7rem;
 }
+
+@media (max-width: 768px) {
+
+  .navbar-underworld {
+    min-height: 70px;
+    padding: 8px 16px;
+  }
+
+  .navbar-brand-logo-transparent {
+    height: 55px;
+  }
+
+  .nav-links a {
+    font-size: 0.7rem;
+    margin-left: 12px;
+    letter-spacing: 0.05rem;
+  }
+
+  .main-hero-container,
+  .catalog-section,
+  .about-section,
+  .contact-section {
+    padding-top: 90px !important;
+    padding-bottom: 40px !important;
+    min-height: auto !important;
+  }
+
+  .roster-header-title h2 {
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .roster-header-title .by-text {
+    font-size: 1.1rem;
+  }
+
+  .artists-double-grid {
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  .video-grid-showcase {
+    gap: 6px;
+  }
+
+  .blur-image-wrapper {
+    height: 110px;
+  }
+
+  .center-star {
+    font-size: 1.2rem;
+  }
+
+  .artist-hud-name {
+    font-size: 0.55rem;
+    letter-spacing: 0.08rem;
+    margin-top: 6px;
+  }
+
+  .video-artist-frame:hover {
+    flex: 1.2;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .roster-header-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-artist-title-pop {
+    font-size: 1.2rem;
+  }
+
+  .modal-img-frame {
+    min-height: 180px;
+    max-height: 220px;
+  }
+
+  .left-branding-pane {
+    min-height: 160px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .contact-pane-logo-large {
+    max-width: 120px;
+  }
+
+  .contact-pane-title {
+    font-size: 1.2rem;
+  }
+
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .preloader-agency-logo {
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .nav-links a {
+    font-size: 0.62rem;
+    margin-left: 8px;
+  }
+
+  .blur-image-wrapper {
+    height: 85px;
+  }
+
+  .artist-hud-name {
+    font-size: 0.5rem;
+  }
+
+  .roster-header-title h2 {
+    font-size: 1.1rem;
+  }
+
+  .video-grid-showcase {
+    gap: 4px;
+  }
+}
