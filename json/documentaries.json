@@ -1,0 +1,94 @@
+{
+  "documentaries": [
+    {
+      "id": "1",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/v1779105255/e7633b59cac8198ffdcedb8100a4cdc1.1000x1000x1_gmozsd.png",
+      "title": "SPACECADET",
+      "year": "2023",
+      "length": "10 Tracks",
+      "director": "Soto Asa",
+      "synopsis": "Pionero del sonido zen y el neoperreo digital en España. Sus barras cargadas de misticismo y estéticas de videojuego arcade combinadas con ritmos ralentizados han definido una nueva escuela subterránea."
+    },
+    {
+      "id": "2",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/c_auto,w_4000/1900x1900-000000-80-0-0_t7cc11.jpg",
+      "title": "BODHIRIA",
+      "year": "2024",
+      "length": "12 Tracks",
+      "director": "Judeline",
+      "synopsis": "Una de las voces más revolucionarias del panorama actual. Fusiona de manera brillante el folclore tradicional del sur de España con texturas vanguardistas de electrónica, R&B contemporáneo y pop experimental."
+    },
+    {
+      "id": "3",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/guxo-artist-xceed-cover-49b1_wxkee8.jpg",
+      "title": "SADCORE DIGITAL",
+      "year": "2024",
+      "length": "7 Tracks",
+      "director": "Guxo",
+      "synopsis": "Referente indispensable del pluggnb y las corrientes más puras del trap melódico digital en castellano. Atmosférico, emocional y sumamente detallista en sus producciones sonoras."
+    },
+    {
+      "id": "4",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/helsinkipro-pedro-ladroga-square_wjihdu.avif",
+      "title": "ALGO POP",
+      "year": "2021",
+      "length": "14 Tracks",
+      "director": "Pedro LaDroga",
+      "synopsis": "Inclasificable y genio del underground multimedial. Lleva más de una década moldeando los sonidos más oscuros, psicodélicos y lo-fi del trap nacional a través de un imaginario único."
+    },
+    {
+      "id": "5",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/photo_5983084864796214559_m_kbe2pi.jpg",
+      "title": "DISOBEY LIVE",
+      "year": "2025",
+      "length": "Acid Set",
+      "director": "Disobey",
+      "synopsis": "Golpes secos, ritmos industriales y frecuencias por encima de los 150 BPM. Capaz de destruir las pistas de baile electrónicas con sets agresivos cargados de sintetizadores ácidos."
+    },
+    {
+      "id": "6",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/c_auto,w_4000/51zDT6gDaIL._UXNaN_FMjpg_QL85__knj1bk.jpg",
+      "title": "LAS ENTRÁÑAS",
+      "year": "2022",
+      "length": "11 Tracks",
+      "director": "Sticky M.A.",
+      "synopsis": "Miembro fundamental de Agorazein. Su voz modulada con autotune psicodélico y letras existenciales sobre barras espaciales lo convierten en un icono de culto irremplazable."
+    },
+    {
+      "id": "7",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/IMG_0486-683x1024_bqarme.png",
+      "title": "MADRE",
+      "year": "2023",
+      "length": "9 Tracks",
+      "director": "Metrika",
+      "synopsis": "La frescura descarada y cruda del rap de calle. Con barras afiladas y una actitud imponente, sus letras giran en torno al empoderamiento, las sombras urbanas y el ritmo directo."
+    },
+    {
+      "id": "8",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/039e61ae3d57583f67799b81aa734f46.538x538x1_cufrpl.png",
+      "title": "BAILE SUL",
+      "year": "2024",
+      "length": "8 Tracks",
+      "director": "MC Buzz",
+      "synopsis": "Anteriormente conocido como MC Buseta. Es el puente perfecto entre el funk brasileño de favela y los ritmos rotos europeos de club, caracterizado por una energía cruda inigualable."
+    },
+    {
+      "id": "9",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/v1779179142/DAISY-RUSOWSKY_FINALALBUMsRGBCOVER_ozowfc.webp",
+      "title": "DAISY",
+      "year": "2024",
+      "length": "11 Tracks",
+      "director": "Rusowsky",
+      "synopsis": "Arquitecto de melodías íntimas melancólicas. Fusiona jazz clásico con música lo-fi electrónica y reggaeton abstracto, construyendo una atmósfera envolvente sumamente magnética."
+    },
+    {
+      "id": "10",
+      "poster": "https://res.cloudinary.com/ddj5f29yf/image/upload/v1779105255/maxresdefault_adqxtm.jpg",
+      "title": "COUPÉ",
+      "year": "2020",
+      "length": "9 Tracks",
+      "director": "Soto Asa",
+      "synopsis": "Barras cargadas de misticismo y estéticas de videojuego arcade combinadas con ritmos ralentizados han definido esta entrega discográfica clásica."
+    }
+  ]
+}
