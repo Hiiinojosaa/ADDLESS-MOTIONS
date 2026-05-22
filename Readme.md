@@ -1,27 +1,117 @@
-# Addless Motions - Official Agency Showcase Platform
+# ADDLESS MOTIONS — The Card Gallery
 
-## 🎯 Chosen Theme
-The project is centered around **Addless Motions**, a cutting-edge avant-garde music artist management and representation agency specializing in alternative indie pop, urban soundscapes, and experimental underground electronic music.
+A visual catalog web landing built as part of The Card Gallery project. ADDLESS MOTIONS is a fictional music agency showcasing its artist roster and discography through dynamic cards loaded from a JSON Server.
 
-## 🎨 Design Explanation & Visual Identity
-- **Typography Concept:** Clean, real typography integration fetching Google Fonts. We pair `Syne` (a heavy, brutalist font for structural headers and digital branding) with `Inter` (a clean, geometric sans-serif for optimal readability on metadata and technical text blocks).
-- **Color Scheme & Gradients:** Crafted around a premium industrial deep matte black palette (`#0a0a0c`) contrasted with absolute white badge elements and custom linear gradients (`linear-gradient(180deg, rgba(10,10,12,0) 40%, rgba(10,10,12,0.95) 100%)`) to handle card shadows organically without causing layout noise.
-- **Bootstrap Adaptation:** Customized implementation of Bootstrap 5 layout grids layered with cards components, fine-tuned inside our dedicated `style.css` file to guarantee total visual coherence without using inline CSS properties.
-- **UX Extras Implemented:** Smooth interactive hover scaling states on artist frames, transition fade effects, and a customized cinematic logo preloader upon interface boot.
+---
 
-## 📡 Engineering & Asynchronous Architecture
-- **Dynamic DOM Injection:** Renders 10 production-grade music album cards dynamically built from a custom JSON structure.
-- **Asynchronous Operations:** Fully utilizes modern JavaScript patterns involving `async/await` and parallel asset resolution through `Promise.all()` fetch statements.
-- **Resilient Memory Contingency:** Features an embedded secure data fallback mechanism. If local runtime execution environment faces server disconnections, port conflicts, or CORS boundaries during evaluation, the architecture hooks the interface into an internal backup pipeline to prevent interface freezing.
-- **External Anchors:** Cards are functionally wrapped inside operational redirection targets pointing seamlessly to Spotify album streams.
+## Theme
 
-## 📁 Repository Structure
-- `index.html` -> Base semantic layout and Bootstrap skeleton.
-- `style.css` -> Custom branding, visual layout overrides, and hover mechanics.
-- `app.js` -> Main asynchronous integration engine and script logic.
-- `db.json` -> Local simulated REST API tracking artists and releases records.
+The project is themed around a music agency called **ADDLESS MOTIONS**. The catalog displays 11 artists and their albums, each with a poster, release year, track count, and biography. The aesthetic draws from underground urban music, vaporwave, and brutalist web design.
 
-## 🚀 Execution Instructions
-1. Initialize the simulated database engine using a terminal client (e.g., Git Bash) under an explicit free port (port 5000 recommended to avoid EADDRINUSE conflicts):
-   ```bash
-   npx json-server --watch db.json --port 5000
+---
+
+## Design
+
+The visual identity is built around a dark matte palette (`#0a0a0c`) with white typography and high-contrast elements. The design uses two Google Fonts:
+
+- **Syne** — display font for headings and titles, bold and geometric
+- **Inter** — body font for metadata and descriptions, clean and readable
+
+The layout is split into two sections:
+
+- **Roster** — a horizontal expandable grid of artist portraits in grayscale with a hover expansion effect
+- **Releases** — a Bootstrap card grid showing album artwork loaded dynamically from `db.json`
+
+Clicking a roster photo opens a dark brutalist modal with artist details. Clicking an album card opens a white rectangular modal with metadata and a Spotify search button with animated sound wave.
+
+Custom gradients are used throughout: the card overlay uses a vertical fade from transparent to near-black, and the navbar uses a textured image background.
+
+No inline CSS is used anywhere — all styles are defined in `styles.css`.
+
+---
+
+## Screenshots
+
+### Preloader
+![Preloader](./screenshots/preloader.png)
+
+### Roster — Artist Grid
+![Roster](./screenshots/roster.png)
+
+### Artist Modal
+![Artist Modal](./screenshots/artist-modal.png)
+
+### Album Modal
+![Album Modal](./screenshots/album-modal.png)
+
+---
+
+## Tech Stack
+
+| Technology | Usage |
+|---|---|
+| HTML | Structure |
+| CSS | Visual design |
+| JavaScript | DOM logic and fetch |
+| JSON Server | Simulated REST API |
+| Bootstrap 5 | Card components |
+| Google Fonts | Syne + Inter |
+| Cloudinary | Image hosting |
+
+---
+
+## Project Structure
+
+```
+ADDLESS-MOTIONS/
+├── index.html
+├── styles.css
+├── app.js
+├── json/
+│   └── db.json
+└── README.md
+```
+
+---
+
+## How to Run
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) installed
+- JSON Server installed globally:
+
+```bash
+npm install -g json-server
+```
+
+### Steps
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Hiiinojosaa/ADDLESS-MOTIONS.git
+cd ADDLESS-MOTIONS
+```
+
+2. Start JSON Server:
+
+```bash
+json-server --watch json/db.json --port 3000
+```
+
+3. Open `index.html` in your browser (use Live Server or any local server).
+
+> The fetch in `app.js` points to `./json/db.json` for static use. If using JSON Server, update the `requestURL` in `app.js` to `http://localhost:3000/documentaries`.
+
+---
+
+## Live Demo
+
+🔗 [View on Vercel](https://addless-motions-2rntzkeip-hiiinojosaas-projects.vercel.app)
+
+---
+
+## Author
+
+Made by **@Hiiinojosaa**
