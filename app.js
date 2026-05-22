@@ -1,4 +1,4 @@
-const requestURL = './json/documentaries.json';
+const requestURL = './json/db.json';
 
 // Carga asíncrona estructurada según su modelo oficial
 async function fetchMoviesJson() {
@@ -19,7 +19,7 @@ fetchMoviesJson().then(movies => {
 
         moviesSection.innerHTML += `
         <div class="col-6 col-md-4 col-lg-3 mb-4">
-            <div class="underworld-release-card card h-100" data-index="${index}" style="cursor: pointer;">
+            <div class="underworld-release-card card h-100" data-index="${index}">
                 <div class="release-img-wrapper">
                     <img src="${item.poster}" class="card-img-top img-fluid" alt="${item.title}">
                 </div>
@@ -152,7 +152,6 @@ function initRosterInteractivity(artistsData) {
         const match = artistsData.find(item => String(item.id) === String(id));
         
         if (match) {
-            frame.style.cursor = 'pointer';
             frame.addEventListener('click', (e) => {
                 e.preventDefault();
                 openArtistProfile(match);
@@ -180,8 +179,8 @@ function createDetailsModalStructure() {
                 <div class="modal-body p-4">
                     <div class="row g-4">
                         <div class="col-md-5">
-                            <div class="modal-img-frame" style="height: 100%; min-height: 250px; background: #000;">
-                                <img id="modalArtistImg" src="" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="modal-img-frame modal-artist-img-frame">
+                                <img id="modalArtistImg" src="" alt="" class="modal-artist-img-inner">
                             </div>
                         </div>
                         <div class="col-md-7 d-flex flex-column justify-content-between">
@@ -196,13 +195,13 @@ function createDetailsModalStructure() {
                                         <p id="modalArtistOrigin" class="modal-value-tech mt-1"></p>
                                     </div>
                                 </div>
-                                <hr style="border-color: rgba(255, 255, 255, 0.1);">
+                                <hr class="modal-artist-divider">
                                 <span class="modal-label-tech d-block mb-2">Album Overview</span>
                                 <p id="modalArtistBio" class="modal-bio-text"></p>
                             </div>
                             <div class="pt-3 text-end">
                                 <span class="modal-label-tech me-2">STATUS:</span>
-                                <span id="modalArtistFee" class="badge bg-white text-dark fw-bold rounded-0 px-3 py-2" style="font-family: 'Syne', sans-serif; font-size: 0.7rem;">OFFICIAL ROSTER</span>
+                                <span id="modalArtistFee" class="badge bg-white text-dark fw-bold rounded-0 px-3 py-2 roster-status-badge">OFFICIAL ROSTER</span>
                             </div>
                         </div>
                     </div>
@@ -220,7 +219,6 @@ function openArtistProfile(artist) {
     document.getElementById('modalArtistFee').textContent = `ALBUM: ${artist.title}`;
     
     const img = document.getElementById('modalArtistImg');
-    // Mapeo automático inteligente: las fichas del roster superior cargan su foto real
     img.src = artist.poster;
     img.alt = artist.director;
     
